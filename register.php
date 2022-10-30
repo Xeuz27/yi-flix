@@ -21,6 +21,11 @@
         <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
         </picture> -->
         <div class="column">
+            <div>
+                <img class="logo" src="./assets/img/yiflix-logo.png" alt="netflix-font" border="0">
+                <h3>Sign Up</h3>
+                <span>to continue to Yi-flix</span>
+            </div>
             <form method="POST">
                 <input type="text" placeholder="First name" name="firstName" required>
                 <input type="text" placeholder="Last name" name="lastName" required>
