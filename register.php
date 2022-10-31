@@ -1,6 +1,18 @@
 <?php
     if(isset($_POST["submitButton"])) {
-        echo "form was submitted";
+        $firstName = $_POST["firstName"];
+        $firstName = sanitizeFormString($_POST["firstName"])
+
+
+    };
+
+    function sanitizeFormString($inputText) {
+        $inputText = strip_tags($inputText); //removes html tags 
+        $inputText = str_replace(" ", "", $inputText); //removes spaces
+        //$inputText = trim($inputText);
+        $inputText = strtolower($inputText);
+        $inputText = ucfirst($inputText);
+        return $inputText;
     }
 ?>
 
@@ -15,11 +27,6 @@
 </head>
 <body>
     <div class='signInContainer'>
-            <!-- <picture>
-        <source media="(min-width:650px)" srcset="img_pink_flowers.jpg">
-        <source media="(min-width:465px)" srcset="img_white_flower.jpg">
-        <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
-        </picture> -->
         <div class="column">
             <div>
                 <img class="logo" src="./assets/img/yiflix-logo.png" alt="netflix-font" border="0">
@@ -36,6 +43,8 @@
                 <input type="password" placeholder="Confirm Password" name="password2" required>
                 <input type="submit" value="SUBMIT" name="submitButton" >
             </form>
+
+            <a href="login.php" class="signInMessage">Already have an account? Sign in</a>
         </div>
     </div>
 </body>
