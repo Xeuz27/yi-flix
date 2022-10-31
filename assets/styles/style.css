@@ -75,3 +75,9 @@
     width: 6.4rem;
 }
 
+.signInMessage {
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
