@@ -9,6 +9,22 @@ class FormSanitizer{
         $inputText = ucfirst($inputText);
         return $inputText;
     }
+    public static function sanitizeFormUsername($inputText) {
+        $inputText = strip_tags($inputText); //removes html tags 
+        $inputText = str_replace(" ", "", $inputText); //removes spaces
+        return $inputText;
+    }
+    public static function sanitizeFormEmail($inputText) {
+        $inputText = strip_tags($inputText); //removes html tags 
+        $inputText = str_replace(" ", "", $inputText); //removes spaces
+        return $inputText;
+    }
+
+    public static function sanitizeFormPassword($inputText) {
+        $inputText = strip_tags($inputText); //removes html tags 
+        return $inputText;
+    }
+
 
 }
 
