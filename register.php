@@ -1,8 +1,22 @@
 <?php
-require_once("includes/classes/FormSanitizer.php")
+require_once("includes/config.php");
+require_once("includes/classes/FormSanitizer.php");
+require_once("includes/classes/Constants.php");
+require_once("includes/classes/Account.php");
+
+    $account = new Account($con);
+
     if(isset($_POST["submitButton"])) {
-        $firstName = FormSanitizer::sanitizeFormString($_POST["firstName"])
-    };
+        $firstName = FormSanitizer::sanitizeFormString($_POST["firstName"]);
+        $lastName = FormSanitizer::sanitizeFormString($_POST["lastName"]);
+        $username = FormSanitizer::sanitizeFormUsername($_POST["userName"]);
+        $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
+        $email2 = FormSanitizer::sanitizeFormEmail($_POST["email2"]);
+        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+        $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
+
+        $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,25 +30,45 @@ require_once("includes/classes/FormSanitizer.php")
 </head>
 <body>
     <div class='signInContainer'>
+
         <div class="column">
+            
             <div>
                 <img class="logo" src="./assets/img/yiflix-logo.png" alt="netflix-font" border="0">
                 <h3>Sign Up</h3>
                 <span>to continue to Yi-flix</span>
             </div>
+
             <form method="POST">
+                <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                 <input type="text" placeholder="First name" name="firstName" required>
+
+                <?php echo $account->getError(Constants::$lastNameCharacters); ?>
                 <input type="text" placeholder="Last name" name="lastName" required>
+
+                <?php echo $account->getError(Constants::$usernameCharacters); ?>
+                <?php echo $account->getError(Constants::$usernameTaken); ?>
                 <input type="text" placeholder="Username" name="userName" required>
+
+                <?php echo $account->getError(Constants::$emailsDontMatch); ?>
+                <?php echo $account->getError(Constants::$emailNotValid); ?>
+                <?php echo $account->getError(Constants::$emailTaken); ?>
                 <input type="email" placeholder="Email" name="email" required>
+
                 <input type="email" placeholder="Confirm Email" name="email2" required>
+
                 <input type="password" placeholder="Password" name="password" required>
+
                 <input type="password" placeholder="Confirm Password" name="password2" required>
+
                 <input type="submit" value="SUBMIT" name="submitButton" >
             </form>
 
-            <a href="login.php" class="signInMessage">Already have an account? Sign in</a>
+            <a href="login.php" class="signInMessage">Already have an account? Sign in here!</a>
+            
         </div>
+
     </div>
+
 </body>
 </html>
