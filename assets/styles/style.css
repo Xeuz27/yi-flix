@@ -88,3 +88,8 @@
     text-align: center;
 }
 
+.previewImage,
+.previewVideo{
+    width: 100%;
+}
+
