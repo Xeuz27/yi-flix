@@ -1,6 +1,6 @@
 <?php 
 class PreviewProvider {
-    private $con, $username
+    private $con, $username;
     public function __construct($con, $username) {
         $this->con = $con;
         $this->username = $username;
@@ -11,7 +11,7 @@ class PreviewProvider {
         }
     }
     public function getRandomEntity(){
-        $query = $this->con->prepare("SELECT * FROM entities ORDER BY RAND() LIMIIT 1");
+        $query = $this->con->prepare("SELECT * FROM entities ORDER BY RAND() LIMIT 1");
         $query->execute();
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
