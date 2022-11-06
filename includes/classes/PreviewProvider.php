@@ -1,4 +1,4 @@
-<?php 
+<?php
 class PreviewProvider {
     private $con, $username;
     public function __construct($con, $username) {
@@ -6,7 +6,7 @@ class PreviewProvider {
         $this->username = $username;
     }
     public function createPreviewVideo($entity){
-        if($entity == null){
+        if ($entity == null) {
             $entity = $this->getRandomEntity();
         }
         $id = $entity->getId();
@@ -17,10 +17,13 @@ class PreviewProvider {
         return "<div class='previewContainer'>
                     <img src='$thumbnail' class='previewImage' hidden>
                     <video autoplay muted class='previewVideo'>
-                        <source src='$preview' type='video/mp4'> 
+                        <source src='$preview' type='video/mp4'>
                     </video>
+                    <div class='previewOverlay'>
+                        hello
+                    </div>
                 </div>";
-        
+
     }
     private function getRandomEntity(){
         $query = $this->con->prepare("SELECT * FROM entities ORDER BY RAND() LIMIT 1");
