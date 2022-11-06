@@ -19,4 +19,4 @@ $userLoggedIn = $_SESSION["userLoggedIn"];
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 </head>
 <body>
-    <div class="wrapper"
+    <div class="wrapper">
