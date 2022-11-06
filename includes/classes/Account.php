@@ -22,7 +22,7 @@ class Account {
         return false;
     }
     public function login($un, $pw){
-        $pw = hash("sha512", $pw)
+        $pw = hash("sha512", $pw);
 
         $query = $this->con->prepare("SELECT * users WHERE username=un AND password=:pw");
         $query->bindValue(":un", $un);
@@ -31,7 +31,7 @@ class Account {
         $query->execute();
 
         if($query->rowCount() ==1 ){
-            return true
+            return true;
         }
         array_push($this->errorArray, Constants::$loginFailed);
     }
