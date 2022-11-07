@@ -11,6 +11,18 @@ body {
     box-sizing: border-box;
 }
 
+h3 {
+    color: #e6e6e6;
+}
+
+a h3:hover {
+    color: #fff;
+
+}
+a{
+    text-decoration: none;
+}
+
 .wrapper {
     min-width: 1050px;
     min-height: 100%;
@@ -101,6 +113,17 @@ body {
     position:relative;
     display: flex;
 }
+.previewContainer.small{
+    width: 230px;
+    height: 129px;
+    margin-right: 4px;
+    display: inline-flex;
+}
+.previewContainer.small img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .previewImage,
 .previewVideo{
     width: 100%;
@@ -123,6 +146,11 @@ body {
     color: #fff;
     font-size: 40px;
     margin: 15px;
+}
+.mainDetails .buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .mainDetails button {
     background-color: rgba(51,51,51,0.4);
@@ -147,4 +175,34 @@ body {
 button i {
     color: inherit;
 }
+.category {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+.entities {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 
+.entities::-webkit-scrollbar {
+    width: 5px;
+    height:5px
+}
+
+.entities::-webkit-scrollbar-track {
+    background: none;
+}
+
+.entities::-webkit-scrollbar-thumb {
+    background: #e6e6e6;
+    border-radius:50px
+}
+.entities::-webkit-scrollbar-thumb:hover {
+    background: #fff;;
+    border-radius:50px
+}
+.previewCategories {
+    padding: 0 50px;
+}
