@@ -11,11 +11,11 @@ class SeasonProvider {
             return;
         }
         $seasonsHtml = "";
+        $videosHtml = "";
 
         foreach($seasons as $season){
             $seasonNumber = $season->getSeasonNumber();
 
-            $videosHtml = "";
             foreach($season->getVideos() as $video ){
                 $videosHtml .= $this->createVideoSquare($video);
             }
