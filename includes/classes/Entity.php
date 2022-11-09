@@ -14,6 +14,9 @@ class Entity {
             $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
     }
+    public function getCategoryId() {
+        return $this->sqlData["categoryId"];
+    }
     public function getId() {
         return $this->sqlData["id"];
     }
