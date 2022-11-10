@@ -14,9 +14,6 @@ class Entity {
             $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
     }
-    public function getCategoryId() {
-        return $this->sqlData["categoryId"];
-    }
     public function getId() {
         return $this->sqlData["id"];
     }
@@ -28,6 +25,9 @@ class Entity {
     }
     public function getPreview() {
         return $this->sqlData["preview"];
+    }
+    public function getCategoryId() {
+        return $this->sqlData["categoryId"];
     }
     public function getSeasons(){
         $query = $this->con->prepare("SELECT * FROM videos WHERE entityId=:id AND isMovie=0 ORDER BY season, episode ASC");
