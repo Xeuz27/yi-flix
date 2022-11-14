@@ -27,6 +27,32 @@ function startHideTimer(){
     })
 }
 
-function initVideo (){
+function initVideo (videoId, username){
     startHideTimer();
+    updateProgessTimer(videoId, username)
+    
+}
+function updateProgessTimer(videoId, username){
+    addDuration(videoId, username)
+
+    var timer;
+    $("video").on("playing", function(event){
+        window.clearInterval(timer);
+        timer = window.setInterval(function(){
+            console.log("timer running");
+        }, 3000);
+    })
+    .on("ended", function(){
+        window.clearInterval(timer);
+    })
+
+
+}
+
+function addDuration (videoId, username){
+    $.post("ajax/addDuration.php",{videoId: videoId, username: username}, function (data){
+        if (data !== null && data !== "" ) {
+            alert(data);
+        }
+    })
 }
