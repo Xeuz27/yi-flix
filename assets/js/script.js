@@ -29,6 +29,7 @@ function startHideTimer(){
 
 function initVideo (videoId, username){
     startHideTimer();
+    setStartTime(videoId, username);
     updateProgessTimer(videoId, username)
     
 }
@@ -44,6 +45,9 @@ function updateProgessTimer(videoId, username){
     })
     .on("ended", function(){
         setFinished(videoId, username);
+        window.clearInterval(timer);
+    })
+    .on("stop pause", function(){
         window.clearInterval(timer);
     })
 
@@ -69,5 +73,18 @@ function setFinished(videoId, username){
         if (data !== null && data !== "" ) {
             alert(data);
         }
+    })
+}
+function setStartTime(videoId, username){
+    $.post("ajax/getProgress.php",{videoId: videoId, username: username}, function (data){
+        if (isNaN(data)) {
+            alert(data);
+            console.log(data);
+            return;
+        }
+            $("video").on("canplay", function(){
+                this.currentTime = data;
+                $("video").off("canplay");
+            })
     })
 }
