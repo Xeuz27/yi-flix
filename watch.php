@@ -22,4 +22,6 @@ $video->incrementViews();
         <source src="<?php echo $video->getFilePath(); ?>" type="video/mp4">
     </video>
 </div>
-<script>initVideo();</script>
+<script>
+initVideo("<?php echo $video->getId(); ?>", "<?php echo $userLoggedIn; ?>");
+</script>
