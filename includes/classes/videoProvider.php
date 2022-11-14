@@ -1,27 +1,27 @@
 <?php
-class videoProvider {
+class VideoProvider {
 
     public static function getUpNext ($con, $currentVideo) {
         $query = $con->prepare("SELECT * FROM videos
-                                WHERE entityId=:entityId AND videoId != :videoId 
+                                WHERE entityId=:entityId AND Id != :videoId 
                                 AND (
                                     ( season = :season AND episode > :episode ) OR season > :season
                                 )
                                 ORDER BY season, episode ASC LIMIT 1");
-        $query->bindData(":entityId", $currentVideo->getEntityId());
-        $query->bindData(":videoId", $currentVideo->getId());
-        $query->bindData(":season", $currentVideo->getSeasonNumber());
-        $query->bindData(":episode", $currentVideo->getEpisodeNumber());
+        $query->bindValue(":entityId", $currentVideo->getEntityId());
+        $query->bindValue(":videoId", $currentVideo->getId());
+        $query->bindValue(":season", $currentVideo->getSeasonNumber());
+        $query->bindValue(":episode", $currentVideo->getEpisodeNumber());
 
         $query->execute();
-        
+
         if($query->rowCount() == 0){
             $query->prepare("SELECT * FROM videos 
                             WHERE season <=1 AND episode <=1
-                            AND videoId != :videoId
-                            ORDER BY views LIMIT 1");
+                            AND id != :videoId
+                            ORDER BY views DESC LIMIT 1");
 
-            $query->bindData(":episode", $currentVideo->getEpisodeNumber());
+            $query->bindValue(":videoId", $currentVideo->getId());
             $query->execute();
         }
         $row = $query->fetch(PDO::FETCH_ASSOC);
