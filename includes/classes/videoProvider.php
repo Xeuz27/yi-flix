@@ -27,7 +27,7 @@ class VideoProvider {
         $row = $query->fetch(PDO::FETCH_ASSOC);
         return  new Video ($con,$row);
     }
-    public static function getEntityVideoForUser ($con, $username, $entityId) {
+    public static function getEntityVideoForUser ($con, $entityId, $username) {
         $query = $con->prepare("SELECT videoId from videoProgress
                                 INNER JOIN videos
                                 ON videoProgress.videoId = videos.id
