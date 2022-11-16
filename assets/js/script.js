@@ -96,3 +96,11 @@ function restartVideo(){
     $(".upNext").fadeOut();
 
 }
+
+function watchVideo (videoId){
+    window.location.href = "watch.php?id=" + videoId;
+}
+
+function showUpNext(){
+    $(".upNext").fadeIn();
+}
