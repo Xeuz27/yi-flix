@@ -47,6 +47,17 @@ class Video {
         $query->bindValue(":id", $this->getId());
         $query->execute();
     }
+    public function getSeasonAndEpisode(){
+        if($this->isMovie()){
+            return;
+        }
+        $season = $this->getSeasonNumber();
+        $episode = $this->getEpisodeNumber();
 
+        return "season $season, episode $episode";
+    }
+    public function isMovie (){
+        return $this->sqlData["isMovie"] == 1;
+    }
 }
 ?>
