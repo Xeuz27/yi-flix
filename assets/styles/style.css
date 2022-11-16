@@ -13,6 +13,9 @@ body {
 h1,h2,h3,h4,h5,h6{
     color: #e6e6e6;
 }
+button,a{
+    cursor: pointer;
+}
 h3 {
     color: #e6e6e6;
 }
@@ -77,6 +80,7 @@ a{
     font-weight: 500;
     margin-top: 10px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .column .header {
@@ -150,6 +154,11 @@ a{
     font-size: 40px;
     margin: 15px;
 }
+.previewOverlay .mainDetails h4{
+    color: #fff;
+    font-size: 20px;
+    margin: 15px;
+}
 .mainDetails .buttons {
     display: flex;
     justify-content: flex-start;
@@ -157,7 +166,7 @@ a{
 }
 .mainDetails button {
     background-color: rgba(51,51,51,0.4);
-    color: #fff;
+    color: #e6e6e6;
     border: none;
     min-width: 150px;
     padding: 0 38px;
@@ -171,7 +180,7 @@ a{
 }
 
 .mainDetails button:hover {
-    background-color: #e6e6e6;
+    background-color: #fff;
     color: rgb(22, 22, 22);
 }
 
@@ -235,6 +244,17 @@ button i {
     display: flex;
     flex-direction: column;
     width: 230px;
+    position: relative;
+}
+.seen {
+    color: 		#00e244;
+    position: absolute;
+    font-size: 22px;
+    top: 5px;
+    right: 5px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    
 }
 .episodeContainer img {
     width: 230px;
@@ -279,9 +299,12 @@ button i {
 .videoControls button {
     font-size: 50px;
     padding: 50px;
-    color: #fff;
+    color: #e6e6e6;
     background-color: transparent;
     border: none;
+}
+.videoControls button:hover{
+    color: #fff;
 }
 
 .upNext {
@@ -295,9 +318,10 @@ button i {
 
 .upNextContainer h2,
 .upNextContainer h3 {
-    color: #fff; 
+    color: #e6e6e6; 
 }
 
 .watchNav {
     z-index: 2;
 }
+
