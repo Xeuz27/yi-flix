@@ -2,7 +2,7 @@
 $hideNav = true;
 require_once("includes/header.php");
 if (!isset($_GET["id"])) {
-    ErrorMessage::show("No Id Found in url");
+    ErrorMessage::show("No Id Passed in url");
 }
 
 

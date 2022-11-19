@@ -1,9 +1,10 @@
 <?php
 require_once("includes/header.php");
 
-if(!isset($_GET["id"])){
-    ErrorMessage::show("No Id Found in url");
+if (!isset($_GET["id"])) {
+    ErrorMessage::show("No Id Passed in url");
 }
+
 $entityId = $_GET["id"];
 
 $entity = new Entity($con, $entityId);
