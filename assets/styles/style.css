@@ -324,4 +324,46 @@ button i {
 .watchNav {
     z-index: 2;
 }
+.topBar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    height: 78px;
+    min-width: 1050px;
+    transition: all 0.8s ease-in-out;
+}
+.topBar.scrolled {
+    background-color: #141414;
+}
 
+.logoContainer {
+    height: 40px;
+}
+
+.logoContainer img {
+    height: 100%;
+}
+
+.navLinks {
+    display: flex;
+    list-style: none;
+}
+
+.navLinks a {
+    color: #fff;
+    font-size: 14px;
+    margin-left: 20px;
+}
+ 
+.rightItems {
+    text-align: right;
+    flex: 1;
+}
+.rightItems i {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 10px;
+}
