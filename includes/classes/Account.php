@@ -110,6 +110,26 @@ class Account {
         
     }
 
+    public function updateDetails($fn,$ln, $em, $un){
+        $this->validateFirstName($fn);
+        $this->validateLastName($ln);
+        $this->validateNewEmail($ln, $un);
+    }
+    private function validateNewEmail($em, $un){
+
+        if(!filter_var($em, FILTER_VALIDATE_EMAIL)){
+            array_push($this->errorArray, Constants::$emailNotValid);
+            return;
+        }
+        $query = $this->con->prepare("SELECT * FROM users WHERE email=:em AND username != :un");
+        $query->bindValue(":em", $em);
+        $query->bindValue(":un", $un);
+        $query->execute();
+
+        if($query->rowCount() != 0){
+            array_push($this->errorArray, Constants::$emailTaken);
+        }
+    }
 
     public function getError($error) {
         if(in_array($error, $this->errorArray )){
