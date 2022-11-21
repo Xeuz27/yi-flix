@@ -1,0 +1,33 @@
+<?php
+
+include_once("includes/header.php")
+?>
+
+<div class="textboxContainer">
+    <input type="text" class="searchInput" placeholder="Search for Something...">
+</div>
+<div class="result"></div>
+
+<script>
+    $(function(){
+
+        var username = '<?php echo $userLoggedIn; ?>';
+        var timer =;
+
+        $(".searchInput").keyup(function() {
+            clearTimeout(timer);
+
+            timer = setTimeout(function(){
+                var inputValue = $(".searchInput").val();
+
+                if(inputValue != ""){
+                    $.post("ajax/getSearchResults.php", {term: inputValue, usernaname: username}, function(data){
+                        $(".results").html(data)
+                    })
+                }else {
+                    $("results").html("");
+                }
+            }500)
+        })
+    })
+</script>
