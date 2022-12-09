@@ -93,6 +93,5 @@ if(isset($_POST["savePasswordButton"])){
             echo "<a href='billing.php' >Subscribe to Yi-Flix.</a>";
         }
         ?>
-
     </div>
 </div>
