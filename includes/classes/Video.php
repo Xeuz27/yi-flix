@@ -61,7 +61,8 @@ class Video {
     }
     public function isInProgress($username){
         $query = $this->con->prepare("SELECT * FROM videoProgress
-                                    WHERE videoId=:videoId AND username=:username");
+                                    WHERE videoId=:videoId AND username=:username
+                                    AND finished =0 ");
         $query->bindValue(":videoId", $this->getId());
         $query->bindValue(":username", $username);
         $query->execute();

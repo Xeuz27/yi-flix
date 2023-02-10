@@ -33,6 +33,7 @@ class VideoProvider {
                                 ON videoProgress.videoId = videos.id
                                 WHERE videos.entityId =:entityId
                                 AND videoProgress.username =:username
+                                AND videoProgress.finished = 1
                                 ORDER BY videoProgress.dateModified DESC
                                 LIMIT 1");
         $query->bindValue(":entityId", $entityId);

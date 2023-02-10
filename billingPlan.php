@@ -13,7 +13,7 @@ use PayPal\Api\PaymentDefinition;
 use PayPal\Api\Plan;
 use PayPal\Api\Patch;
 use PayPal\Api\PatchRequest;
-use PayPal\Api\PayPalModel;
+use PayPal\Common\PayPalModel;
 
 $plan = new Plan();
 
@@ -22,7 +22,6 @@ $plan->setName('Yi-flix monthly subscription')
     ->setType('INFINITE');
 
 $paymentDefinition = new PaymentDefinition();
-
 // The possible values for such setters are mentioned in the setter method documentation.
 // Just open the class file. e.g. lib/PayPal/Api/PaymentDefinition.php and look for setFrequency method.
 // You should be able to see the acceptable values in the comments.
@@ -31,32 +30,14 @@ $paymentDefinition->setName('Regular Payments')
     ->setFrequency('Month')
     ->setFrequencyInterval("1")
     ->setAmount(new Currency(array('value' => 7.99, 'currency' => 'USD')));
-
-// Charge Models
-// shipping and taxes not using but keeping code
-
-// $chargeModel = new ChargeModel();
-// $chargeModel->setType('SHIPPING')
-//     ->setAmount(new Currency(array('value' => 10, 'currency' => 'USD')));
-// $paymentDefinition->setChargeModels(array($chargeModel));
-
-$merchantPreferences = new MerchantPreferences();
-
-$currentUrl = "http://$_SERVER[HTTP_HOST]$S_SERVER[REQUEST_URL]";
+$currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $returnUrl = str_replace("billing.php", "profile.php", $currentUrl);
-
-
-// ReturnURL and CancelURL are not required and used when creating billing agreement with payment_method as "credit_card".
-// However, it is generally a good idea to set these values, in case you plan to create billing agreements which accepts "paypal" as payment_method.
-// This will keep your plan compatible with both the possible scenarios on how it is being used in agreement.
+$merchantPreferences = new MerchantPreferences();
 $merchantPreferences->setReturnUrl($returnUrl . "?success=true")
     ->setCancelUrl($returnUrl . "?success=false")
     ->setAutoBillAmount("yes")
     ->setInitialFailAmountAction("CONTINUE")
     ->setMaxFailAttempts("0");
-    
-    // ->setSetupFee(new Currency(array('value' => 1, 'currency' => 'USD')));
-
 
 $plan->setPaymentDefinitions(array($paymentDefinition));
 $plan->setMerchantPreferences($merchantPreferences);
@@ -93,3 +74,41 @@ try {
     die($ex);
   }
 ?>
+ <!-- "sender_batch_header": {
+    "sender_batch_id": "2014021801",
+    "recipient_type": "EMAIL",
+    "email_subject": "You have money!",
+    "email_message": "You received a payment. Thanks for using our service!"
+  },
+  "items": [
+    {
+      "amount": {
+        "value": "9.87",
+        "currency": "USD"
+      },
+      "sender_item_id": "201403140001",
+      "recipient_wallet": "PAYPAL",
+      "receiver": "<receiver@example.com>"
+    },
+    {
+      "amount": {
+        "value": "112.34",
+        "currency": "USD"
+      },
+      "sender_item_id": "201403140002",
+      "recipient_wallet": "PAYPAL",
+      "receiver": "<receiver2@example.com>"
+    },
+    {
+      "recipient_type": "PHONE",
+      "amount": {
+        "value": "5.32",
+        "currency": "USD"
+      },
+      "note": "Thanks for using our service!",
+      "sender_item_id": "201403140003",
+      "recipient_wallet": "VENMO",
+      "receiver": "<408-234-1234>"
+    }
+  ]
+}' -->

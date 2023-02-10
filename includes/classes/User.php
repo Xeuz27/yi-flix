@@ -23,8 +23,6 @@ class User {
         return $this->sqlData["isSubscribed"];
     }
 
-
-
 }
 
 ?>
